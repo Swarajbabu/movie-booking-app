@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -17,19 +16,6 @@ const io = new Server(server, {
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// Routes
-const authRoutes = require('./routes/auth');
-const movieRoutes = require('./routes/movies');
-const showtimeRoutes = require('./routes/showtimes');
-const bookingRoutes = require('./routes/bookings');
-const paymentRoutes = require('./routes/payment');
-
-app.use('/api/auth', authRoutes);
-app.use('/api/movies', movieRoutes);
-app.use('/api/showtimes', showtimeRoutes);
-app.use('/api/bookings', bookingRoutes);
-app.use('/api/payment', paymentRoutes);
 
 // Routes Placeholder
 app.get('/api/health', (req, res) => {
@@ -91,15 +77,7 @@ setInterval(() => {
 }, 60000);
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/movie-booking';
 
-mongoose.connect(MONGO_URI)
-    .then(() => {
-        console.log('Connected to MongoDB');
-        server.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
-    })
-    .catch((err) => {
-        console.error('MongoDB connection error:', err);
-    });
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
