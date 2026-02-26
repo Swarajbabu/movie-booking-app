@@ -1,0 +1,43 @@
+{
+  "movies": [
+    {
+      "id": "699b5375fdaebd23f22a325d",
+      "title": "Dune: Part Two"
+    },
+    {
+      "id": "699b5375fdaebd23f22a325f",
+      "title": "Deadpool & Wolverine"
+    }
+  ],
+  "showtimes": [
+    {
+      "id": "699b5375fdaebd23f22a3261",
+      "movieId": "699b5375fdaebd23f22a325d",
+      "theatreId": "699b5375fdaebd23f22a3259"
+    },
+    {
+      "id": "699b5375fdaebd23f22a3263",
+      "movieId": "699b5375fdaebd23f22a325d",
+      "theatreId": "699b5375fdaebd23f22a325b"
+    },
+    {
+      "id": "699b5375fdaebd23f22a3265",
+      "movieId": "699b5375fdaebd23f22a325f",
+      "theatreId": "699b5375fdaebd23f22a3259"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "699c509227c98565b3875644",
+      "showtime": "60d5ecb54d6e9b1f2c7a5001",
+      "title": "Mock Movie / Selected Title",
+      "theatre": "Cineplex Mock Cinema"
+    },
+    {
+      "id": "699c54235c052e9e13843276",
+      "showtime": "60d5ecb54d6e9b1f2c7a5001",
+      "title": "Mock Movie / Selected Title",
+      "theatre": "Cineplex Mock Cinema"
+    }
+  ]
+}
