@@ -44,8 +44,8 @@ export default defineSchema({
     }).index("by_movie", ["movieId"]).index("by_theatre", ["theatreId"]),
 
     bookings: defineTable({
-        userId: v.id("users"),
-        showtimeId: v.id("showtimes"),
+        userId: v.string(),
+        showtimeId: v.string(),
         movieTitle: v.optional(v.string()),
         theatreName: v.optional(v.string()),
         seats: v.array(v.object({

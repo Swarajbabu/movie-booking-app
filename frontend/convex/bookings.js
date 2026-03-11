@@ -2,7 +2,7 @@ import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
 export const getByUser = query({
-    args: { userId: v.id("users") },
+    args: { userId: v.string() },
     handler: async (ctx, args) => {
         const bookings = await ctx.db
             .query("bookings")
@@ -14,11 +14,18 @@ export const getByUser = query({
             bookings.map(async (b) => {
                 let showtime = null;
                 if (b.showtimeId) {
-                    showtime = await ctx.db.get(b.showtimeId);
-                    if (showtime) {
-                        const movie = await ctx.db.get(showtime.movieId);
-                        const theatre = await ctx.db.get(showtime.theatreId);
-                        showtime = { ...showtime, movie, theatre };
+                    try {
+                        // Prevent ctx.db.get from crashing if it's not a valid Convex ID
+                        if (!b.showtimeId.startsWith("mock_st_")) {
+                            showtime = await ctx.db.get(b.showtimeId);
+                            if (showtime) {
+                                const movie = await ctx.db.get(showtime.movieId);
+                                const theatre = await ctx.db.get(showtime.theatreId);
+                                showtime = { ...showtime, movie, theatre };
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Invalid showtime ID", e);
                     }
                 }
                 return { ...b, showtime };
@@ -29,7 +36,7 @@ export const getByUser = query({
 
 export const createBooking = mutation({
     args: {
-        userId: v.id("users"),
+        userId: v.string(),
         showtimeId: v.string(), // Allowing string to support mock showtimes from TMDB APIs
         movieTitle: v.optional(v.string()),
         theatreName: v.optional(v.string()),

@@ -54,7 +54,7 @@ const Checkout = () => {
             });
         } catch (error) {
             console.error("Payment API Error", error);
-            alert("Payment failed. Please try again.");
+            alert("Payment failed. " + (error.message || "Please try again."));
         } finally {
             setLoading(false);
         }

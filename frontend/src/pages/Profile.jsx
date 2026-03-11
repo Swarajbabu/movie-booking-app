@@ -21,7 +21,7 @@ const Profile = () => {
             return endTime > Date.now();
         });
     }
-    const loading = rawBookings === undefined;
+    const loading = user ? rawBookings === undefined : false;
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-12">
@@ -75,13 +75,15 @@ const Profile = () => {
                         <div>
                             <h1 className="text-3xl font-bold mb-8">My Tickets</h1>
                             <div className="flex flex-col gap-6">
-                                {loading ? (
+                                {!user ? (
+                                    <div className="text-center text-neutral-500 py-10 border border-neutral-800 border-dashed rounded-xl">Please sign in to view your tickets.</div>
+                                ) : loading ? (
                                     <div className="text-center text-neutral-500 py-10 border border-neutral-800 border-dashed rounded-xl">Loading your tickets...</div>
                                 ) : bookings.length === 0 ? (
                                     <div className="text-center text-neutral-500 py-10 border border-neutral-800 border-dashed rounded-xl">You have no booking history yet. Time to catch a movie!</div>
                                 ) : (
                                     bookings.map((tkt, idx) => {
-                                        const date = new Date(tkt.createdAt);
+                                        const date = new Date(tkt._creationTime);
                                         const isUpcoming = tkt.status === 'Confirmed';
 
                                         return (
@@ -93,14 +95,14 @@ const Profile = () => {
                                                 )}
 
                                                 <div className="flex-1 flex flex-col justify-center border-r border-neutral-800 border-dashed pr-6 cursor-pointer" onClick={() => setSelectedTicket(tkt)}>
-                                                    <h3 className="text-xl font-bold mb-2">{tkt.showtime?.movie?.title || tkt.movieTitleFallback || 'Unknown Movie'}</h3>
+                                                    <h3 className="text-xl font-bold mb-2">{tkt.showtime?.movie?.title || tkt.movieTitle || 'Unknown Movie'}</h3>
                                                     <div className="text-neutral-400 flex flex-col gap-1 text-sm mb-4">
                                                         <span>{date.toLocaleDateString()} • {tkt.showtime?.startTime ? new Date(tkt.showtime.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Unknown Time'}</span>
-                                                        <span>{tkt.showtime?.theatre?.name || tkt.theatreNameFallback || 'Unknown Theatre'}</span>
+                                                        <span>{tkt.showtime?.theatre?.name || tkt.theatreName || 'Unknown Theatre'}</span>
                                                         <span>Seats: {tkt.seats.map(s => s.seatId ? s.seatId : s).join(', ')}</span>
                                                         <span>Amount: ${tkt.totalAmount.toFixed(2)}</span>
                                                     </div>
-                                                    <div className="text-xs text-neutral-500 uppercase tracking-wider">Order ID: {tkt._id.substring(18).toUpperCase()}</div>
+                                                    <div className="text-xs text-neutral-500 uppercase tracking-wider">Order ID: {tkt._id.slice(-6).toUpperCase()}</div>
                                                 </div>
 
                                                 <div className="w-full md:w-32 flex flex-col items-center justify-center gap-2">
@@ -182,10 +184,10 @@ const Profile = () => {
                             <div className="w-48 h-48 bg-white rounded-2xl p-4 mb-8 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                                 <QRCodeCanvas
                                     value={JSON.stringify({
-                                        orderId: selectedTicket._id.substring(18).toUpperCase(),
-                                        movie: selectedTicket.showtime?.movie?.title || selectedTicket.movieTitleFallback || 'Unknown Movie',
+                                        orderId: selectedTicket._id.slice(-6).toUpperCase(),
+                                        movie: selectedTicket.showtime?.movie?.title || selectedTicket.movieTitle || 'Unknown Movie',
                                         seats: selectedTicket.seats.map(s => s.seatId ? s.seatId : s).join(', '),
-                                        date: selectedTicket.createdAt
+                                        date: selectedTicket._creationTime
                                     })}
                                     size={160}
                                     level="H"
@@ -196,18 +198,18 @@ const Profile = () => {
 
                             <div className="w-full bg-neutral-950 rounded-xl p-6 border border-neutral-800 border-dashed text-left">
                                 <div className="text-xs text-neutral-500 mb-1 uppercase tracking-wider">Movie</div>
-                                <div className="font-bold text-lg mb-4">{selectedTicket.showtime?.movie?.title || selectedTicket.movieTitleFallback || 'Unknown Movie'}</div>
+                                <div className="font-bold text-lg mb-4">{selectedTicket.showtime?.movie?.title || selectedTicket.movieTitle || 'Unknown Movie'}</div>
 
                                 <div className="flex justify-between mb-4">
                                     <div>
                                         <div className="text-xs text-neutral-500 mb-1 uppercase tracking-wider">Date & Time</div>
-                                        <div className="font-bold">{new Date(selectedTicket.createdAt).toLocaleDateString()} • {selectedTicket.showtime?.startTime ? new Date(selectedTicket.showtime.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Unknown Time'}</div>
+                                        <div className="font-bold">{new Date(selectedTicket._creationTime).toLocaleDateString()} • {selectedTicket.showtime?.startTime ? new Date(selectedTicket.showtime.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Unknown Time'}</div>
                                     </div>
                                 </div>
 
                                 <div className="mb-4">
                                     <div className="text-xs text-neutral-500 mb-1 uppercase tracking-wider">Location</div>
-                                    <div className="font-bold">{selectedTicket.showtime?.theatre?.name || selectedTicket.theatreNameFallback || 'Unknown Theatre'}</div>
+                                    <div className="font-bold">{selectedTicket.showtime?.theatre?.name || selectedTicket.theatreName || 'Unknown Theatre'}</div>
                                 </div>
 
                                 <div className="flex justify-between mb-4">
@@ -217,7 +219,7 @@ const Profile = () => {
                                     </div>
                                     <div className="text-right">
                                         <div className="text-xs text-neutral-500 mb-1 uppercase tracking-wider">Order ID</div>
-                                        <div className="font-mono font-bold">{selectedTicket._id.substring(18).toUpperCase()}</div>
+                                        <div className="font-mono font-bold">{selectedTicket._id.slice(-6).toUpperCase()}</div>
                                     </div>
                                 </div>
                             </div>
