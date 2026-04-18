@@ -2,28 +2,33 @@
 
 > A full-stack, real-time movie ticket booking web application built with **React**, **Convex**, **Node.js**, **Socket.IO**, and **TailwindCSS**.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Click_Here-brightgreen?style=for-the-badge)](https://your-cinebook.vercel.app)
-![GitHub stars](https://img.shields.io/github/stars/Swarajbabu/movie-booking-app?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/Swarajbabu/movie-booking-app?style=for-the-badge)
-![License](https://img.shields.io/github/license/Swarajbabu/movie-booking-app?style=for-the-badge)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Click_Here-brightgreen?style=for-the-badge)](https://movie-booking-app-delta.vercel.app/)
+[![GitHub stars](https://img.shields.io/github/stars/Swarajbabu/movie-booking-app?style=for-the-badge)](https://github.com/Swarajbabu/movie-booking-app/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Swarajbabu/movie-booking-app?style=for-the-badge)](https://github.com/Swarajbabu/movie-booking-app/network)
+[![License](https://img.shields.io/github/license/Swarajbabu/movie-booking-app?style=for-the-badge)](LICENSE)
 
-![Tech Stack](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![Convex](https://img.shields.io/badge/Convex-Database-F26522?style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Socket.IO](https://img.shields.io/badge/Socket.IO-Real--Time-010101?style=for-the-badge&logo=socket.io)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge&logo=vercel)
 
 ---
 
 ## 📸 Screenshots
 
-> ⚠️ **Add your screenshots here after taking them!**
-
 ### 🏠 Home Page — Browse Movies
 ![Home Page](screenshots/home.png)
 
+### 🎞️ Movie Details
+![Movie Details](screenshots/movie-details.png)
+
 ### 💺 Seat Selection — Real-Time Interactive Map
 ![Seat Selection](screenshots/seats.png)
+
+### 🛒 Checkout Page
+![Checkout](screenshots/checkout.png)
 
 ### 🎫 QR Code Ticket — Downloadable Booking Confirmation
 ![QR Ticket](screenshots/ticket.png)
@@ -39,7 +44,11 @@
 
 ![Demo GIF](screenshots/demo.gif)
 
-> 📌 **[👉 Try the Live App Here](https://your-cinebook.vercel.app)**
+---
+
+## 🌐 Live App
+
+> 👉 **[https://movie-booking-app-delta.vercel.app/](https://movie-booking-app-delta.vercel.app/)**
 
 ---
 
@@ -47,7 +56,6 @@
 
 - [Overview](#-overview)
 - [Features](#-features)
-- [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Database Schema](#-database-schema)
@@ -58,6 +66,7 @@
 - [Scripts](#-scripts)
 - [Deployment](#-deployment)
 - [Roadmap](#-roadmap)
+- [Support](#-support)
 - [Author](#-author)
 - [License](#-license)
 
@@ -140,7 +149,7 @@ The application supports **Google OAuth** and **JWT-based email/password** authe
 ## 📁 Project Structure
 
 ```
-Movie ticket booking/
+movie-booking-app/
 ├── backend/                        # Node.js + Express + Socket.IO server
 │   ├── middleware/                 # Auth middleware (JWT verification)
 │   ├── models/                     # Mongoose models (legacy/reference)
@@ -272,7 +281,7 @@ The Convex schema defines **5 collections**:
 
 ### Socket.IO Events
 
-The backend (`server.js`) manages real-time seat locking using Socket.IO rooms — one room per `showtimeId`.
+The backend manages real-time seat locking using Socket.IO rooms — one room per `showtimeId`.
 
 | Event (Client → Server) | Payload | Description |
 |---|---|---|
@@ -374,11 +383,11 @@ The frontend starts on **http://localhost:5173** (Vite default).
 
 ## ☁️ Deployment
 
-| Layer | Platform | Notes |
+| Layer | Platform | Live URL |
 |---|---|---|
-| **Frontend** | [Vercel](https://vercel.com) | Set `VITE_CONVEX_URL` and `VITE_BACKEND_URL` in Vercel env vars |
+| **Frontend** | [Vercel](https://vercel.com) | [movie-booking-app-delta.vercel.app](https://movie-booking-app-delta.vercel.app/) |
 | **Backend** | [Render](https://render.com) | Set `PORT`, `JWT_SECRET`, `GOOGLE_CLIENT_ID` in Render env vars |
-| **Database** | [Convex Cloud](https://convex.dev) | Deploy Convex functions with `npx convex deploy` |
+| **Database** | [Convex Cloud](https://convex.dev) | Deploy with `npx convex deploy` |
 
 ### Deploying Convex Functions
 ```bash
@@ -387,16 +396,16 @@ npx convex deploy
 ```
 
 ### Vercel Frontend Deployment
-1. Push your code to GitHub.
-2. Import the repo on Vercel, set the **Root Directory** to `frontend`.
-3. Set all `VITE_*` environment variables.
-4. Deploy.
+1. Push your code to GitHub
+2. Import the repo on Vercel, set **Root Directory** to `frontend`
+3. Set all `VITE_*` environment variables
+4. Deploy ✅
 
 ### Render Backend Deployment
-1. Create a new **Web Service** on Render, pointing to the `backend/` folder.
-2. Set the **Start Command** to `npm start`.
-3. Add all required environment variables.
-4. Deploy.
+1. Create a new **Web Service** on Render pointing to `backend/`
+2. Set the **Start Command** to `npm start`
+3. Add all required environment variables
+4. Deploy ✅
 
 ---
 
@@ -435,16 +444,16 @@ npx convex deploy
 - [ ] Email confirmation after booking
 - [ ] SMS notifications via Twilio
 - [ ] Mobile app (React Native)
-- [ ] Multi-language support
 - [ ] Dark / Light theme toggle
 - [ ] Movie reviews & ratings by users
+- [ ] Multi-language support
 
 ---
 
 ## ⭐ Support
 
-If you found this project helpful or interesting, please consider giving it a **star** ⭐
-It helps others discover the project and motivates me to keep improving it!
+If you found this project helpful or interesting, please give it a **star** ⭐
+It helps others discover this project and keeps me motivated!
 
 [![GitHub Star](https://img.shields.io/github/stars/Swarajbabu/movie-booking-app?style=social)](https://github.com/Swarajbabu/movie-booking-app)
 
