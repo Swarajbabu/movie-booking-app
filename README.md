@@ -2,6 +2,11 @@
 
 > A full-stack, real-time movie ticket booking web application built with **React**, **Convex**, **Node.js**, **Socket.IO**, and **TailwindCSS**.
 
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Click_Here-brightgreen?style=for-the-badge)](https://your-cinebook.vercel.app)
+![GitHub stars](https://img.shields.io/github/stars/Swarajbabu/movie-booking-app?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Swarajbabu/movie-booking-app?style=for-the-badge)
+![License](https://img.shields.io/github/license/Swarajbabu/movie-booking-app?style=for-the-badge)
+
 ![Tech Stack](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![Convex](https://img.shields.io/badge/Convex-Database-F26522?style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
@@ -10,10 +15,39 @@
 
 ---
 
+## 📸 Screenshots
+
+> ⚠️ **Add your screenshots here after taking them!**
+
+### 🏠 Home Page — Browse Movies
+![Home Page](screenshots/home.png)
+
+### 💺 Seat Selection — Real-Time Interactive Map
+![Seat Selection](screenshots/seats.png)
+
+### 🎫 QR Code Ticket — Downloadable Booking Confirmation
+![QR Ticket](screenshots/ticket.png)
+
+### 🛡️ Admin Dashboard — Manage Movies & Showtimes
+![Admin Dashboard](screenshots/admin.png)
+
+---
+
+## 🎥 Demo
+
+> Watch a quick walkthrough of the full booking flow:
+
+![Demo GIF](screenshots/demo.gif)
+
+> 📌 **[👉 Try the Live App Here](https://your-cinebook.vercel.app)**
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
 - [Features](#-features)
+- [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Database Schema](#-database-schema)
@@ -23,6 +57,9 @@
 - [Getting Started](#-getting-started)
 - [Scripts](#-scripts)
 - [Deployment](#-deployment)
+- [Roadmap](#-roadmap)
+- [Author](#-author)
+- [License](#-license)
 
 ---
 
@@ -281,8 +318,8 @@ VITE_GOOGLE_CLIENT_ID=your_google_client_id
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/movie-ticket-booking.git
-cd "movie-ticket-booking"
+git clone https://github.com/Swarajbabu/movie-booking-app.git
+cd movie-booking-app
 ```
 
 ### 2. Setup the Backend
@@ -392,6 +429,27 @@ npx convex deploy
 
 ---
 
+## 🗺️ Roadmap
+
+- [ ] Payment gateway integration (Razorpay / Stripe)
+- [ ] Email confirmation after booking
+- [ ] SMS notifications via Twilio
+- [ ] Mobile app (React Native)
+- [ ] Multi-language support
+- [ ] Dark / Light theme toggle
+- [ ] Movie reviews & ratings by users
+
+---
+
+## ⭐ Support
+
+If you found this project helpful or interesting, please consider giving it a **star** ⭐
+It helps others discover the project and motivates me to keep improving it!
+
+[![GitHub Star](https://img.shields.io/github/stars/Swarajbabu/movie-booking-app?style=social)](https://github.com/Swarajbabu/movie-booking-app)
+
+---
+
 ## 👤 Author
 
 **Swaraj Babu**
@@ -401,7 +459,7 @@ npx convex deploy
 
 ## 📄 License
 
-This project is licensed under the **ISC License**.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
