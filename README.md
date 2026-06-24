@@ -1,4 +1,4 @@
-# 🎬 CineBook — Movie Ticket Booking App
+# 🎬 CineBook — Movie Ticket Booking App.
 
 > A full-stack, real-time movie ticket booking web application built with **React**, **Convex**, **Node.js**, **Socket.IO**, and **TailwindCSS**.
 
